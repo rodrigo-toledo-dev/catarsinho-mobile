@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, Image, Text, Button } from 'react-native';
 import styled from 'styled-components/native';
 
@@ -41,20 +41,21 @@ const StrongText = styled.Text`
   font-weight: bold;
 `;
 
-const CardProject = () => {
-  return (
-    <ProjectView>
-      <ProjectImageView>
-        <ProjectImage />
-      </ProjectImageView>
-      <StrongText>Cardify</StrongText>
-      <Text>Valor a arrecadar R$ 485,00</Text>
-      <StrongText>Ainda falta(am)! R$ 485,00</StrongText>
-      <ProjectLink>
-        <ProjectLinkText>Quero ajudar este projeto</ProjectLinkText>
-      </ProjectLink>
-    </ProjectView>
-  );
-};
 
-export default CardProject;
+export default class CardProject extends Component {
+  render() {
+    return (
+      <ProjectView key={this.props.project.slug}>
+        <ProjectImageView>
+          <ProjectImage />
+        </ProjectImageView>
+        <StrongText>{this.props.project.title}</StrongText>
+        <Text>Valor a arrecadar R$ {this.props.project.value_to_get}</Text>
+        <StrongText>Ainda falta(am)! R$ {this.props.project.value_missing}</StrongText>
+        <ProjectLink onClick={() => {}}>
+          <ProjectLinkText>Quero ajudar este projeto</ProjectLinkText>
+        </ProjectLink>
+      </ProjectView>
+    );
+  }
+};
