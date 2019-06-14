@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, Text, Button } from 'react-native';
+import { Text } from 'react-native';
 import styled from 'styled-components/native';
 
 const ProjectView = styled.View`
@@ -18,9 +18,8 @@ const ProjectImageView = styled.View`
 `;
 
 const ProjectImage = styled.Image.attrs(props => ({
-  source: {uri: props.imageSource}
-}))
-`
+  source: { uri: props.imageSource },
+}))`
   min-width: 150px;
   min-height: 150px;
   margin-top: 20px;
@@ -42,21 +41,18 @@ const StrongText = styled.Text`
   font-weight: bold;
 `;
 
+const CardProject = (props) => (
+  <ProjectView key={props.project.slug}>
+    <ProjectImageView>
+      <ProjectImage imageSource={props.project.image} />
+    </ProjectImageView>
+    <StrongText>{props.project.title}</StrongText>
+    <Text>Valor a arrecadar R$ {props.project.value_to_get}</Text>
+    <StrongText>Ainda falta(am)! R$ {props.project.value_missing}</StrongText>
+    <ProjectLink onClick={() => {}}>
+      <ProjectLinkText>Quero ajudar este projeto</ProjectLinkText>
+    </ProjectLink>
+  </ProjectView>
+)
 
-export default class CardProject extends Component {
-  render() {
-    return (
-      <ProjectView key={this.props.project.slug}>
-        <ProjectImageView>
-          <ProjectImage imageSource={this.props.project.image} />
-        </ProjectImageView>
-        <StrongText>{this.props.project.title}</StrongText>
-        <Text>Valor a arrecadar R$ {this.props.project.value_to_get}</Text>
-        <StrongText>Ainda falta(am)! R$ {this.props.project.value_missing}</StrongText>
-        <ProjectLink onClick={() => {}}>
-          <ProjectLinkText>Quero ajudar este projeto</ProjectLinkText>
-        </ProjectLink>
-      </ProjectView>
-    );
-  }
-};
+export default CardProject;
