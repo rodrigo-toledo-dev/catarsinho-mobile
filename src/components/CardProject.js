@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Text } from 'react-native';
 import styled from 'styled-components/native';
 
@@ -41,7 +41,7 @@ const StrongText = styled.Text`
   font-weight: bold;
 `;
 
-const CardProject = (props) => (
+const CardProject = props => (
   <ProjectView key={props.project.slug}>
     <ProjectImageView>
       <ProjectImage imageSource={props.project.image} />

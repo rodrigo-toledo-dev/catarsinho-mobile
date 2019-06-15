@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { FlatList } from "react-native";
+import { List, ListItem } from "react-native-elements";
 import api from '~/services/api';
-import { StatusBar } from 'react-native';
 import GeneralBackground from '~/components/GeneralBackground';
 import Logo from '~/components/Logo';
 import CardProject from '~/components/CardProject';
@@ -11,6 +12,10 @@ export default class Main extends Component {
     projects: [],
   };
 
+  async componentWillMount() {
+    // this.createSocket();
+  }
+
   async componentDidMount() {
     const response = await api.get('projects');
 
@@ -20,7 +25,6 @@ export default class Main extends Component {
   render() {
     return (
       <GeneralBackground>
-        <StatusBar barStyle="light-content" hidden={true} />
         <Logo />
         { this.state.projects.map(project => (
           <CardProject key={project.slug} project={project} />
